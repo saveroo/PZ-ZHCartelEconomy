@@ -214,7 +214,7 @@ ZHUtils.allowCompost = checkItemFromList(getItem('CompostBag'), allowedCompost)
 ZHUtils.getItem = getItem
 ZHUtils.getPrimaryHandItem = getPrimaryHandItem
 ZHUtils.setPrimaryHandItem = setPrimaryHandItem
-ZHUtils.debug = true
+ZHUtils.debug = getDebug()
 function ZHUtils.debugSay(player, text)
     if ZHUtils.debug then
         if player then

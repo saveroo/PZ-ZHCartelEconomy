@@ -61,7 +61,7 @@ function ISSeedAction:perform()
         return vanillaSeedingAction(self)
     end
 
-    ZHUtils.debugSay(self.character, "Seeding at " .. self.plant:getSquare():getX() .. ", " .. self.plant:getSquare():getY() .. ", " .. self.plant:getSquare():getZ())
+    --ZHUtils.debugSay(self.character, "Seeding at " .. self.plant:getSquare():getX() .. ", " .. self.plant:getSquare():getY() .. ", " .. self.plant:getSquare():getZ())
     local plantSq = self.plant:getSquare()
     --local x,y,z = plantSq:getX(), plantSq:getY(), plantSq:getZ();
     local plots = ZHFarmingCore:plotSchema(plotTypes.seed, plantSq)
