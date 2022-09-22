@@ -59,7 +59,8 @@ function moduleCheck(moduleName)
         fertilize = 'ZHFarming_module_fertilizing',
         plow = 'ZHFarming_module_plowing',
         remove = 'ZHFarming_module_removing',
-        harvest = 'ZHFarming_module_harvesting'
+        harvest = 'ZHFarming_module_harvesting',
+        continuation = 'ZHFarming_module_continuation'
     }
     if not getPlayer() or not getSpecificPlayer(0) then return; end
     local item = getPlayer():getInventory():getItemFromType('ZHFarming_farming_plan');

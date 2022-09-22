@@ -27,6 +27,7 @@ ZHFarmingCore.enableFertilizing = enableFertilizing
 ZHFarmingCore.enablePlowing = enablePlowing
 ZHFarmingCore.enableHarvesting = enableHarvesting
 ZHFarmingCore.enableRemoving = enableRemoving
+ZHFarmingCore.enableContinuation = enableContinuation
 
 plotTypes = {
     fertilize = "fertilize",

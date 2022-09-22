@@ -11,7 +11,7 @@
 local function fertilizeAt(sq, _self)
     local char = _self.character
     local plant = _self.plant
-    if plant and plant.fertilizer < 4 then
+    if sq and ZHUtils.getPlantSquareAt(sq).fertilizer < 4 then
         local args = {
             x = sq:getX(),
             y = sq:getY(),
@@ -20,8 +20,8 @@ local function fertilizeAt(sq, _self)
         CFarmingSystem.instance:sendCommand(char, 'fertilize', args)
 
         -- MP shouldn't do this directly
-        self.item:Use()
-        self.character:getInventory():Remove("FertilizerEmpty")
+        _self.item:Use()
+        _self.character:getInventory():Remove("FertilizerEmpty")
         --plant.fertilizer = plant.fertilizer + 1
         --char:setPrimaryHandItem("farming.Compost_bag")
         --ISFarmingMenu.walkToPlant(char, ZHUtils.fakeSq(args.x, args.y, args.z))
@@ -39,12 +39,12 @@ function ISFertilizeAction:perform()
         --return;
     end
 
-    -- Check if player holding Guidebook and know the recipes.
-    if not ZHFarmingCore.enablePlot() then return; end
+    ---- Check if player holding Guidebook and know the recipes.
+    --if not ZHFarmingCore.enablePlot() then return; end
 
     --local x,y,z = plantSq:getX(), plantSq:getY(), plantSq:getZ();
-    local plots = ZHFarmingCore.plotSchema(plotTypes.fertilize, self.plant:getSquare())
-    local plotCount = ZHFarmingCore.tilesCount(plots)
+    local plots = ZHFarmingCore:plotSchema(plotTypes.fertilize, self.plant:getSquare())
+    local plotCount = ZHFarmingCore:tilesCount(plots)
     if plotCount == 0 then return ISBaseTimedAction.perform(self); end
     -- █▀▀ █▀▀ █▀█ ▀█▀ █ █░░ █ ▀█ █ █▄░█ █▀▀
     -- █▀░ ██▄ █▀▄ ░█░ █ █▄▄ █ █▄ █ █░▀█ █▄█
