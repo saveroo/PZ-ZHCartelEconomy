@@ -1,0 +1,131 @@
+--function ZHFarming_VanillaWateringAction(_self)
+--    self = _self
+--    if not self.item:getContainer() then return end
+--    --Vanilla
+--    self.item:getContainer():setDrawDirty(true);
+--    self.item:setJobDelta(0.0);
+--
+--    --Doing sound
+--    if self.sound and self.sound ~= 0 then
+--        self.character:getEmitter():stopOrTriggerSound(self.sound)
+--    end
+--
+--    local args = { x = self.sq:getX(), y = self.sq:getY(), z = self.sq:getZ(), uses = self.uses }
+--    CFarmingSystem.instance:sendCommand(self.character, 'water', args)
+--
+--    --Hack: use the water, too hard to get the server to update the client's inventory
+--    local plant = CFarmingSystem.instance:getLuaObjectOnSquare(self.sq)
+--    local waterLvl = plant.waterLvl
+--    for i=1,self.uses do
+--        if(waterLvl < 100) then
+--            if self.item:getUsedDelta() > 0 then
+--                self.item:Use()
+--            end
+--            waterLvl = waterLvl + 5
+--            if(waterLvl > 100) then
+--                waterLvl = 100
+--            end
+--        end
+--    end
+--
+--    local leftUses = math.floor(self.item:getUsedDelta()/self.item:getUseDelta())
+--    self.item:setUsedDelta(leftUses * self.item:getUseDelta())
+--    -- needed to remove from queue / start next.
+--    return ISBaseTimedAction
+--end
+--
+--function ZHFarming_VanillaSeedingAction(_self)
+--    self = _self
+--    if self.sound and self.sound ~= 0 then
+--        self.character:getEmitter():stopOrTriggerSound(self.sound)
+--    end
+--
+--    for i=1, self.nbOfSeed do
+--        local seed = self.seeds[i];
+--        self.character:getInventory():Remove(seed);
+--    end
+--
+--    local sq = self.plant:getSquare()
+--    local args = { x = sq:getX(), y = sq:getY(), z = sq:getZ(), typeOfSeed = self.typeOfSeed }
+--    CFarmingSystem.instance:sendCommand(self.character, 'seed', args)
+--
+--    -- needed to remove from queue / start next.
+--    return ISBaseTimedAction
+--end
+--
+--function ZHFarming_VanillaFertilizingAction(_self)
+--    self = _self
+--    self.item:getContainer():setDrawDirty(true);
+--    self.item:setJobDelta(0.0);
+--
+--    local sq = self.plant:getSquare()
+--    local args = { x = sq:getX(), y = sq:getY(), z = sq:getZ() }
+--    CFarmingSystem.instance:sendCommand(self.character, 'fertilize', args)
+--
+--    -- MP shouldn't do this directly
+--    self.item:Use()
+--    self.character:getInventory():Remove("FertilizerEmpty")
+--
+--    -- needed to remove from queue / start next.
+--    return ISBaseTimedAction
+--end
+--
+--function ZHFarming_VanillaPlowingAction(_self)
+--    self = _self
+--    if self.item then
+--        self.item:getContainer():setDrawDirty(true);
+--        self.item:setJobDelta(0.0);
+--    elseif ZombRand(10) == 0 then -- chance of getting hurt
+--        if ZombRand(2) == 0 then
+--            self.character:getBodyDamage():getBodyPart(BodyPartType.Hand_L):SetScratchedWeapon(true);
+--        else
+--            self.character:getBodyDamage():getBodyPart(BodyPartType.Hand_R):SetScratchedWeapon(true);
+--        end
+--    end
+--    if self.sound and self.sound ~= 0 then
+--        self.character:getEmitter():stopOrTriggerSound(self.sound)
+--    end
+--
+--    local sq = self.gridSquare
+--    local args = { x = sq:getX(), y = sq:getY(), z = sq:getZ() }
+--    CFarmingSystem.instance:sendCommand(self.character, 'plow', args)
+--
+--    CFarmingSystem.instance:changePlayer(self.character)
+--    -- maybe give worm ?
+--    if ZombRand(5) == 0 then
+--        self.character:getInventory():AddItem("Base.Worm");
+--    end
+--    return ISBaseTimedAction
+--end
+--
+--function ZHFarming_VanillaShovelAction(_self)
+--    self = _self
+--    if self.sound and self.sound:isPlaying() then
+--        self.sound:stop();
+--    end
+--    self.item:getContainer():setDrawDirty(true);
+--    self.item:setJobDelta(0.0);
+--
+--    local sq = self.plant:getSquare()
+--    local args = { x = sq:getX(), y = sq:getY(), z = sq:getZ() }
+--    CFarmingSystem.instance:sendCommand(self.character, 'removePlant', args)
+--
+--    return ISBaseTimedAction
+--end
+--
+--function ZHFarming_VanillaHarvestPlantAction(_self)
+--    self = _self
+--    if self.sound and self.sound ~= 0 then
+--        self.character:getEmitter():stopOrTriggerSound(self.sound)
+--    end
+--
+--    local sq = self.plant:getSquare()
+--    local args = { x = sq:getX(), y = sq:getY(), z = sq:getZ() }
+--    CFarmingSystem.instance:sendCommand(self.character, 'harvest', args)
+--
+--    -- we successfull harvest our plant, we may gain xp !
+--    CFarmingSystem.instance:gainXp(self.character, self.plant)
+--
+--    -- needed to remove from queue / start next.
+--    return ISBaseTimedAction
+--end

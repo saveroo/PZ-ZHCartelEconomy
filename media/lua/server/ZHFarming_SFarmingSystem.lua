@@ -1,0 +1,24 @@
+--if ProceduralDistributions ~= nil then
+--    if isClient() then return end
+--end
+--
+--require "Farming/SFarmingSystem"
+--require "Farming/SPlantGlobalObject"
+--
+--local function noise(message) SFarmingSystem.instance:noise(message) end
+--local function getPlantAt(x, y, z)
+--    return SFarmingSystem.instance:getLuaObjectAt(x, y, z)
+--end
+--
+--function SFarmingSystem:ZHWatering()
+--
+--end
+
+
+--function SFarmingSystem:receiveCommand(playerObj, command, args)
+--    SFarmingSystemCommands[command](playerObj, args)
+--end
+--
+--function SFarmingSystem:OnClientCommand(command, playerObj, args)
+--    SFarmingSystemCommands[command](playerObj, args)
+--end

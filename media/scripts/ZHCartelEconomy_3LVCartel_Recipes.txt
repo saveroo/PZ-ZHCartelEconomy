@@ -1,0 +1,98 @@
+module ZHCartel
+{
+  imports
+  {
+    Base,
+    Greenfire
+  }
+
+  recipe [LV Distribute] 5 Bags of Cannabis (Boof) for 100 Gems
+  {
+     OzCannabis=100,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:GemScrap=100,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+
+  recipe [LV Distribute] 5 Jars of Cannabis for 200 Gems
+  {
+     CannaJar1/CannaJar2/CannaJar3/CannaJar4,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:GemScrap=130,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+
+  recipe [LV Distribute] 1 Kg of Cannabis for 16 Pearls
+  {
+     KgCannabis=1,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Pearls=16,
+     OnCreate:ZHCartel_LV_OnCreate,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+   recipe [LV Distribute] 3 Kg of Cannabis for 51 Pearls
+  {
+     KgCannabis=3,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Pearls=51,
+     OnCreate:ZHCartel_LV_OnCreate,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+   recipe [LV Distribute] 5 Kg of Cannabis for 90 Pearls
+  {
+     KgCannabis=5,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Pearls=90,
+     OnCreate:ZHCartel_LV_OnCreate,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+
+  recipe [LV Distribute] 25 of Cannabis for 10 Silver Bars
+  {
+     Cannabis=25,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:SilverBar=10,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+
+  recipe [LV Distribute] 2 Carton of Cigs for 10 Silver Bars
+  {
+     GFCigaretteCarton=2,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:SilverBar=10,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+
+  recipe [LV Distribute] 2 Case of Cigarettes for 40 Gold Bars
+  {
+     GFCigaretteCase=2,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:GoldBar=40,
+     Time:10.0,
+     Category:[ZH] Lousville Cartel,
+  }
+
+}

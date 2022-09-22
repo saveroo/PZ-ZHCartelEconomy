@@ -1,0 +1,213 @@
+--require "ISUI/ISInventoryPaneContextMenu"
+--
+--function ZHFarming_setModuleSeeds(item, tos, player)
+--    local dataTOS = item:getModData()
+--    if item:hasModData() then
+--        dataTOS.typeOfSeed = tos.typeOfSeed;
+--        dataTOS.seedName = tos.props.seedName;
+--        dataTOS.seedsRequired = tos.props.seedsRequired;
+--        item:setName("[Module] Seeding ("..dataTOS.typeOfSeed..")")
+--    end
+--end
+--
+--function ZHFarming_tooltips(seedAvailable, typeOfSeed, option)
+--    local tooltip = ISToolTip:new();
+--    tooltip:initialise();
+--    tooltip:setVisible(false);
+--    option.toolTip = tooltip;
+--    tooltip:setName(getText("Farming_" .. typeOfSeed));
+--    local result = true;
+--    tooltip.description = getText("Farming_Tooltip_MinWater") .. farming_vegetableconf.props[typeOfSeed].waterLvl .. "";
+--    if farming_vegetableconf.props[typeOfSeed].waterLvlMax then
+--        tooltip.description = tooltip.description .. " <LINE> " .. getText("Farming_Tooltip_MaxWater") ..  farming_vegetableconf.props[typeOfSeed].waterLvlMax;
+--    end
+--    tooltip.description = tooltip.description .. " <LINE> " .. getText("Farming_Tooltip_TimeOfGrow") .. math.floor((farming_vegetableconf.props[typeOfSeed].timeToGrow * 7) / 24) .. " " .. getText("IGUI_Gametime_days");
+--    local waterPlus = "";
+--    if farming_vegetableconf.props[typeOfSeed].waterLvlMax then
+--        waterPlus = "-" .. farming_vegetableconf.props[typeOfSeed].waterLvlMax;
+--    end
+--    tooltip.description = tooltip.description .. " <LINE> " .. getText("Farming_Tooltip_AverageWater") .. farming_vegetableconf.props[typeOfSeed].waterLvl .. waterPlus;
+--    local rgb = "";
+--    if seedAvailable < farming_vegetableconf.props[typeOfSeed].seedsRequired then
+--        result = false;
+--        rgb = "<RGB:1,0,0>";
+--    end
+--    tooltip.description = tooltip.description .. " <LINE> " .. rgb .. getText("Farming_Tooltip_RequiredSeeds") .. seedAvailable .. "/" .. farming_vegetableconf.props[typeOfSeed].seedsRequired;
+--    tooltip:setTexture(farming_vegetableconf.props[typeOfSeed].texture);
+--    if not result then
+--        option.onSelect = nil;
+--        option.notAvailable = true;
+--    end
+--    tooltip:setWidth(170);
+--end
+--
+--function ZHFarming_module_seeding_addContext(player, context, items)
+--    for _, v in ipairs(items) do
+--        local item = v;
+--        if not instanceof(v, "InventoryItem") then
+--            item = v.items[1];
+--        end
+--
+--        if item:getType() == "ZHFarming_farming_plan" then
+--            local addOption = true
+--            if addOption then
+--                ZHFarming_farmingPlan_addContext(player, context, item)
+--            end
+--        end
+--
+--        if item:getType() and item:getType() == "ZHFarming_module_seeding" then
+--            local addOption = true;
+--            --context:addOption("Set Seed", item, ZHFarming_setModuleSeeds, player)
+--            if addOption then
+--                local seedOption = context:addOption("Choose seed")
+--                local seedOfChoiceMenu = context:getNew(context)
+--                context:addSubMenu(seedOption, seedOfChoiceMenu)
+--
+--                local typeOfSeedList = {}
+--                for typeOfSeed, props in pairs(farming_vegetableconf.props) do
+--                        table.insert(typeOfSeedList, {
+--                            typeOfSeed = typeOfSeed,
+--                            seedName = props.seedName,
+--                            props = props,
+--                            text = getText("Farming_" .. typeOfSeed) })
+--                end
+--                table.sort(typeOfSeedList, function(a,b) return not string.sort(a.text, b.text) end)
+--                for _, tos in ipairs(typeOfSeedList) do
+--                    local seedsOwned = getSpecificPlayer(player):getInventory():getCountTypeRecurse(tos.props.seedName)
+--                    if seedsOwned then
+--                        local menus = seedOfChoiceMenu:addOption(tos.text.."("..seedsOwned..")", item, ZHFarming_setModuleSeeds, tos, player)
+--                        ZHFarming_tooltips(seedsOwned, tos.typeOfSeed, menus)
+--                    end
+--                end
+--            end
+--        end
+--    end
+--end
+--
+--function ZHFarming_farmingPlan_setData(item, player)
+--    print("test")
+--end
+--
+--function initFarmingPlan(item)
+--    local data = item:getModData()
+--    data.modules = data.modules or {}
+--    data.modules.plot = data.modules.plot or {}
+--    data.modules.plow = data.modules.plow or {}
+--    data.modules.seed = data.modules.seed or {}
+--    data.modules.water = data.modules.water or {}
+--    data.modules.fertilize = data.modules.fertilize or {}
+--    data.modules.harvest = data.modules.harvest or {}
+--    data.modules.remove = data.modules.remove or {}
+--    data.modules.continuation = data.modules.continuation or {}
+--    --data.owner = data.owner or player:getUsername()
+--    data.modules['plot'] = data.modules['plot'] or {}
+--    data.modules['plot'].state = 'off'
+--    data.modules['plot'].schema = '3x3'
+--
+--    data.modules['plow'] = data.modules['plow'] or {}
+--    data.modules['plow'].state = 'off'
+--    data.modules['plow'].total = 0
+--
+--    data.modules['seed'] = data.modules['seed'] or {}
+--    data.modules['seed'].state = 'off'
+--    data.modules['seed'].selectedSeed = 'none'
+--    data.modules['seed'].total = 0
+--
+--    data.modules['water'] = data.modules['water'] or {}
+--    data.modules['water'].state = 'off'
+--    data.modules['water'].selectedCan = 'ZHFarming_WateringCanFull_16x'
+--    data.modules['water'].afterSeed = 'off'
+--    data.modules['water'].total = 0
+--
+--    data.modules['fertilize'] = data.modules['fertilize'] or {}
+--    data.modules['fertilize'].state = 'off'
+--    data.modules['fertilize'].afterWater = 'off'
+--    data.modules['fertilize'].max = 4
+--
+--    data.modules['harvest'] = data.modules['harvest'] or {}
+--    data.modules['harvest'].state = 'off'
+--    data.modules['harvest'].total = 0
+--
+--    data.modules['harvest'] = data.modules['harvest'] or {}
+--    data.modules['remove'].state = 'off'
+--    data.modules['continuation'] = data.modules['continuation'] or {}
+--    data.modules['continuation'].state = 'off'
+--end
+--
+--function ZHFarming_farmingPlan_addContext(player, context, item)
+--    local pages = context:addOption("Planning")
+--    local modulePages = context:getNew(context)
+--    context:addSubMenu(pages, modulePages)
+--
+--    local addOption = true
+--    if player then
+--        --break
+--        --local men = modulePages.addOption(getText("ContextMenu_Drink"), item, ZHFarming_farmingPlan_setData, player)
+--        --modulePages.onSelect = nil;
+--        --modulePages.notAvailable = true;
+--    end
+--    if addOption then
+--        local menus = modulePages.addOption("Just test", item, ZHFarming_farmingPlan_setData, item, player)
+--        break
+--    end
+--    --local optionPages = context:getNew(context)
+--    --context:addSubMenu(modulePages, optionPages)
+--    --optionPages.addOption("test2")
+--
+--    --if item:hasModData() then
+--    --    initFarmingPlan(item)
+--    --end
+--
+--    --local farmingPlan = item:getModData()
+--    --farmingPlan.modules = farmingPlan.modules or {}
+--    --for k, v in pairs(farmingPlan.modules) do
+--    --    local plr = getSpecificPlayer(player)
+--    --    plr:Say(k)
+--    --    --if v['on'] then
+--    --    --    modulePages.addOption(k, item, ZHFarming_farmingPlan_setData, v, player)
+--    --    --end
+--    --
+--    --    --if k == "plot" or v == "plot" then
+--    --    --    modulePages.addOption("Plot", items, ZHFarming_farmingPlan_setData, v, plr)
+--    --    --    optionPages.addOption("Use it", items, ZHFarming_farmingPlan_setData, v, plr)
+--    --    --    optionPages.addOption("Use 3x3 Plot", items, ZHFarming_farmingPlan_setData, v, plr)
+--    --    --end
+--    --    --if k == "seed" then
+--    --    --    modulePages.addOption("Choose Seed")
+--    --    --    local typeOfSeedList = {}
+--    --    --    for typeOfSeed, props in pairs(farming_vegetableconf.props) do
+--    --    --        table.insert(typeOfSeedList, {
+--    --    --            typeOfSeed = typeOfSeed,
+--    --    --            seedName = props.seedName,
+--    --    --            props = props,
+--    --    --            text = getText("Farming_" .. typeOfSeed) })
+--    --    --    end
+--    --    --    table.sort(typeOfSeedList, function(a,b) return not string.sort(a.text, b.text) end)
+--    --    --    for _, tos in ipairs(typeOfSeedList) do
+--    --    --        local seedsOwned = plr:getInventory():getCountTypeRecurse(tos.props.seedName)
+--    --    --        if seedsOwned then
+--    --    --            local menus = optionPages:addOption(tos.text.."("..seedsOwned..")", items, ZHFarming_setModuleSeeds, tos, player)
+--    --    --            ZHFarming_tooltips(seedsOwned, tos.typeOfSeed, menus)
+--    --    --        end
+--    --    --    end
+--    --    --end
+--    --    --if k == "water" then
+--    --        --modulePages.addOption("Set Water", item, ZHFarming_farmingPlan_setData, v, plr)
+--    --        --optionPages.addOption("on", item, ZHFarming_farmingPlan_setData, v, plr)
+--    --        --optionPages.addOption("off", item, ZHFarming_farmingPlan_setData, v, plr)
+--    --    --end
+--    --    --if k == "harvest" then
+--    --    --    modulePages.addOption("Set Water", items, ZHFarming_farmingPlan_setData, v, player)
+--    --    --    optionPages.addOption("on", items, ZHFarming_farmingPlan_setData, v, player)
+--    --    --    optionPages.addOption("off", items, ZHFarming_farmingPlan_setData, v, player)
+--    --    --end
+--    --    --if k == "continuation" then
+--    --    --    modulePages.addOption("Set Continuation", items, ZHFarming_farmingPlan_setData, v, player)
+--    --    --    optionPages.addOption("on", items, ZHFarming_farmingPlan_setData, v, player)
+--    --    --    optionPages.addOption("off", items, ZHFarming_farmingPlan_setData, v, player)
+--    --    --end
+--    --end
+--end
+--
+--
+--Events.OnPreFillInventoryObjectContextMenu.Add(ZHFarming_module_seeding_addContext)

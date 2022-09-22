@@ -1,0 +1,111 @@
+module ZHCartel
+{
+  imports
+  {
+    Base,
+    Greenfire
+  }
+
+  recipe [1] Inquiry for RS Cartel Contact Card
+   {
+
+   Pearls=50,
+   Corn=100,
+   KgCannabis=1,
+   keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+   Result: ZH_Cartel_RS_Card,
+   Time: 10.0,
+   Category: [ZH] Cartel Access,
+   }
+
+   recipe [2] Inquiry for WP Cartel Contact Card
+   {
+
+	Pearls=80,
+	KgCannabis=2,
+	ZH_Cartel_RS_Card=1,
+	keep ZH_Cartel_RSCustomer=10,
+	keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+   Result: ZH_Cartel_WP_Card,
+   Time: 10.0,
+   Category: [ZH] Cartel Access,
+   }
+
+   recipe [3] Inquiry for LV Cartel Contact Card
+   {
+
+   SilverBar=40,
+   GoldBar=20,
+   Pearls=120,
+	ZH_Cartel_RS_Card=1,
+	ZH_Cartel_WP_Card=1,
+	keep ZH_Cartel_RSCustomer=50,
+	keep ZH_Cartel_WPCustomer=50,
+	GFCigaretteCase=1,
+	KgCannabis=3,
+	WhiskeyFull=10,
+	Wine=10,
+	Wine2=10,
+
+
+   keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+   Result: ZH_Cartel_LV_Card,
+   Time: 10.0,
+   Category: [ZH] Cartel Access,
+   }
+
+   recipe [4] Lobby the Knox Government
+   {
+
+   Pearls=250,
+	ZH_Cartel_RS_Card=1,
+	ZH_Cartel_WP_Card=1,
+	ZH_Cartel_LV_Card=1,
+	GFCigaretteCase=10,
+	WhiskeyFull=20,
+	Wine=20,
+	Wine2=20,
+	HottieZ=1,
+	ZH_Cartel_RSCustomer=100,
+	ZH_Cartel_WPCustomer=100,
+	ZH_Cartel_LVCustomer=100,
+   keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+   Result: ZH_Cartel_Legal_Card,
+   Time: 10.0,
+   Category: [ZH] Cartel Access,
+   }
+
+   recipe [4] Expand Business to Whole Knox Country
+   {
+
+	GFCigaretteCase=10,
+	KgCannabis=20,
+   keep ZH_Cartel_RS_Card,
+	keep ZH_Cartel_WP_Card,
+	ZH_Cartel_Legal_Card=0,
+	keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+   Result: ZH_Cartel_Knox_Card,
+   Time: 10.0,
+   Category: [ZH] Cartel Access,
+   }
+
+   recipe [4] Renew Legal Document
+   {
+
+    Pearls=30,
+    destroy ZH_Cartel_Legal_Card=1,
+    keep ZH_Cartel_Knox_Card,
+    keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+   Result: ZH_Cartel_Legal_Card,
+   OnTest: ZHCartel_Renew_Document_OnTest,
+   OnCreate: ZHCartel_Renew_Document_OnCreate,
+   Time: 10.0,
+   Category: [ZH] Cartel Access,
+   }
+}

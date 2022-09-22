@@ -1,0 +1,9 @@
+Tooltip_EN = {
+    Tooltip_ZHGFPatch_Life = "--Patched--\n Life: %d\nTurnInto: %d\nStartYear: %d\nStartMonth: %d\nStartDay: %d\nStartHour: %d\nStartTime: %d\nDryTime: %d\nRemaining: %d\nShouldDry: %s",
+    Tooltip_ZHFarming_AdvancedFarmingMag1 = "Stolen from the mansion in guadalupe, this magazine teaches you the art of guadalupe farming techniques.",
+    Tooltip_ZHFarming_testState_plot = "Plot Module: on",
+    Tooltip_ZHFarming_testState_plot1 = "Plot Module: off",
+    Tooltip_ZHFarming_testState_plot2 = "This is a test state.",
+    Tooltip_ZHFarming_testState_on = "This is a test state.",
+    Tooltip_ZHFarming_testState_off = "This is a test state.",
+}

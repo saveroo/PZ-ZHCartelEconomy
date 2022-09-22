@@ -1,0 +1,79 @@
+module ZHCartel
+{
+    imports
+    {
+        Base
+    }
+
+	item ZH_Cartel_RS_Card
+    {
+	    DisplayCategory = Junk,
+	    Weight	=	0.05,
+	    Type	=	Normal,
+	    DisplayName	=	[RS] Cartel Contact Card,
+	    Icon	=	CreditCard,
+	    WorldStaticModel = CreditCard,
+    }
+
+    item ZH_Cartel_WP_Card
+    {
+	    DisplayCategory = Junk,
+	    Weight	=	0.05,
+	    Type	=	Normal,
+	    DisplayName	=	[WP] Cartel Contact Card,
+	    Icon	=	CreditCard,
+	    WorldStaticModel = CreditCard,
+    }
+
+	item ZH_Cartel_LV_Card
+    {
+	    DisplayCategory = Junk,
+	    Weight	=	0.05,
+	    Type	=	Normal,
+	    DisplayName	=	[LV] Cartel Contact Card,
+	    Icon	=	CreditCard,
+	    WorldStaticModel = CreditCard,
+    }
+
+	item ZH_Cartel_Knox_Card
+    {
+	    DisplayCategory = Junk,
+	    Weight	=	0.05,
+	    Type	=	Normal,
+	    DisplayName	=	[KNOX] Cartel ID Card,
+	    Icon	=	CreditCard,
+	    WorldStaticModel = CreditCard,
+    }
+
+	item ZH_Cartel_Legal_Card
+    {
+	    DisplayCategory = Junk,
+	    Weight	=	0.05,
+		Type	=	Drainable,
+		UseDelta = 0.05,
+	    DisplayName	= Legal Card (Limited Use),
+	    Icon	=	CreditCard,
+	    WorldStaticModel = CreditCard,
+    }
+
+	item ZH_Cartel_Blackmarket_Rhino_Ownership
+    {
+	    DisplayCategory = Junk,
+	    Weight	=	0.047,
+		Type	=	Normal,
+	    DisplayName	= [Rhino] Insurance,
+	    Icon	=	Notebook,
+	    WorldStaticModel = EmptyNotebook,
+    }
+
+	item ZH_Cartel_Blackmarket_M113X_APCWAR_Ownership
+    {
+	    DisplayCategory = Junk,
+	    Weight	=	0.048,
+		Type	=	Normal,
+	    DisplayName	= [SSR] Insurance,
+	    Icon	=	Notebook,
+	    WorldStaticModel = EmptyNotebook,
+    }
+	
+}

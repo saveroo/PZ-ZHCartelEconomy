@@ -1,0 +1,322 @@
+---- TODO: make it concise, D.R.Y and S.O.L.I.D
+--
+----require "Farming/TimedActions/ISWaterPlantAction"
+----require "Farming/TimedActions/ISSeedAction"
+----require "TimedActions/ISFertilizePlantAction"
+----require "ISUI/ISFarmingMenu"
+----require "CFarmingSystem"
+----ISWaterPlantAction = ISWaterPlantAction or {}
+--
+----CFarmingSystem = CFarmingSystem or {}
+----ISWaterPlantAction = ISWaterPlantAction or {}
+----ISSeedAction = ISSeedAction or {}
+----ISFarmingMenu = ISFarmingMenu or {}
+--
+---- Define waterUsePerAction as local variable
+--local waterUse = 0;
+--local wateredPlants = {}
+--local allowedCans = {
+--    'ZHFarming_WateredCanFull_2x',
+--    'ZHFarming_WateredCanFull_4x',
+--    'ZHFarming_WateredCanFull_8x',
+--    'ZHFarming_WateredCanFull_16x',
+--    'ZHFarming_WateredCanFull_20x'
+--}
+--local fertilizedCans = {
+--    'ZHFarming_FertilizedCanFull_16x',
+--    'ZHFarming_FertilizedCanFull_20x'
+--}
+--local knowRecipe = function(char)
+--    return char:isRecipeKnown("El Vero Watering Technique")
+--            or char:isRecipeKnown("El Vero Seeding Technique")
+--end
+--
+--local holdGuidebook = function(char)
+--    local inv = char:getInventory()
+--    for i=0,inv:getItems():size()-1 do
+--        local item = inv:getItems():get(i)
+--        if item:getType() == "ZHFarming_AdvancedFarmingMag1" then
+--            return true
+--        end
+--    end
+--    return false
+--end
+--
+---- check if primary contains in allowedCans
+--local function IsSpecialCan(char)
+--    local primaryItem = char:getPrimaryHandItem()
+--    for i=1, #allowedCans do
+--        if primaryItem and primaryItem:getType() == allowedCans[i] then
+--            return true
+--        end
+--    end
+--    for i=1, #fertilizedCans do
+--        if primaryItem and primaryItem:getType() == fertilizedCans[i] then
+--            return true
+--        end
+--    end
+--    return false
+--end
+--
+---- Check plant at tiles
+--local function getPlantAt(x, y, z)
+--    return CFarmingSystem.instance:getLuaObjectAt(x, y, z)
+--end
+--
+---- Mock Square
+--local function fakeSq(x, y, z)
+--    return {
+--        getX = function() return x end,
+--        getY = function() return y end,
+--        getZ = function() return z end
+--    }
+--end
+--
+--local function fertilizePlant(plant, char, args)
+--    if plant and plant.fertilizer < 4 then
+--        CFarmingSystem.instance:sendCommand(char, 'fertilize', args)
+--        --plant.fertilizer = plant.fertilizer + 1
+--        --ISFarmingMenu.walkToPlant(getSpecificPlayer(0), fakeSq(args.x, args.y, args.z))
+--        ISTimedActionQueue.add(ISFertilizeAction:new(getSpecificPlayer(0), char:getPrimaryHandItem(), plant, 20));
+--    end
+--end
+---- planting at tiles
+--local function wateringAt(x, y, z, __self)
+--    --if not __self.item:getContainer() then return end
+--    --__self.item:getContainer():setDrawDirty(true);
+--    --__self.item:setJobDelta(0.0);
+--    --
+--    --if __self.sound and __self.sound ~= 0 then
+--    --    __self.character:getEmitter():stopOrTriggerSound(__self.sound)
+--    --end
+--
+--    local _self = __self
+--    local args = { x = x, y = y, z = z, uses = _self.uses }
+--    local plant = getPlantAt(args.x, args.y, args.z)
+--    if plant then
+--        -- Send command to server
+--        CFarmingSystem.instance:sendCommand(_self.character, 'water', args)
+--
+--        -- if fertilized can is used
+--        for i = 1, #fertilizedCans do
+--            local primaryItem = _self.character:getPrimaryHandItem()
+--            if primaryItem and primaryItem:getType() == fertilizedCans[i] then
+--                fertilizePlant(plant, _self.character, args)
+--            end
+--        end
+--        -- set local var
+--        --waterUse = waterUse + 1
+--        --wateredPlants[plant] = plant
+--        -- Check if plant is watered, then use source
+--        --local plt = CFarmingSystem.instance:getLuaObjectOnSquare(fakeSq(x,y,z))
+--        --if plt then
+--        --
+--        --end
+--        local waterLvl = plant.waterLvl
+--        for i=1,_self.uses do
+--            if(waterLvl < 100) then
+--                if _self.item:getUsedDelta() > 0 then
+--                    _self.item:Use()
+--                end
+--                waterLvl = waterLvl + 5
+--                if(waterLvl > 100) then
+--                    waterLvl = 100
+--                end
+--            end
+--        end
+--
+--        local leftUses = math.floor(_self.item:getUsedDelta()/_self.item:getUseDelta())
+--        _self.item:setUsedDelta(leftUses * _self.item:getUseDelta())
+--
+--        -- if waterLvl missing is below the max use of the water plant (so we can't have the option for 40 water if the plant have 80)
+--        local missingWaterUse = math.ceil((100 - plant.waterLvl) / 5);
+--        if missingWaterUse < leftUses then
+--            leftUses = missingWaterUse;
+--        end
+--        if leftUses > 10 then
+--            leftUses = 10
+--        end
+--
+--        if leftUses > _self.uses then
+--            leftUses = _self.uses;
+--        end
+--
+--        --if ISFarmingMenu.walkToPlant(getPlayer(), fakeSq(args.x, args.y, args.z)) then
+--        --    ISTimedActionQueue.add(ISWaterPlantAction:new(getSpecificPlayer(0), _self.character:getPrimaryHandItem(), leftUses,
+--        --            fakeSq(args.x, args.y, args.z)
+--        --    , 20 + (6 * leftUses)));
+--        --end
+--    end
+--    --ISBaseTimedAction.perform(_self)
+--end
+--
+--function ISWaterPlantAction:perform()
+--    --if not self.item:getContainer() then return end
+--    self.item:getContainer():setDrawDirty(true);
+--    self.item:setJobDelta(0.0);
+--
+--    if self.sound and self.sound ~= 0 then
+--        self.character:getEmitter():stopOrTriggerSound(self.sound)
+--    end
+--    -- Harvest moon style watering
+--    if (IsSpecialCan(self.character)) and knowRecipe(self.character) then
+--        local x,y,z = self.sq:getX(), self.sq:getY(), self.sq:getZ();
+--        self.character:Say("El Vero Watering 術~!")
+--        --[W] [W] [W]
+--        --[] [] []
+--        --[] [] []
+--        wateringAt(x-1, y-1, z, self)
+--        wateringAt(x, y-1, z, self)
+--        wateringAt(x+1, y-1, z, self)
+--        --[] [] []
+--        --[W] [W] [W]
+--        --[] [] []
+--        wateringAt(x-1, y, z, self)
+--        wateringAt(x, y, z, self)
+--        wateringAt(x+1, y, z, self)
+--        --[] [] []
+--        --[] [] []
+--        --[W] [W] [W]
+--        wateringAt(x-1, y+1, z, self)
+--        wateringAt(x, y+1, z, self)
+--        wateringAt(x+1, y+1, z, self)
+--    else
+--        --if not self.item:getContainer() then return end
+--        --self.item:getContainer():setDrawDirty(true);
+--        --self.item:setJobDelta(0.0);
+--        --
+--        --if self.sound and self.sound ~= 0 then
+--        --    self.character:getEmitter():stopOrTriggerSound(self.sound)
+--        --end
+--        --Vanilla
+--        local args = { x = self.sq:getX(), y = self.sq:getY(), z = self.sq:getZ(), uses = self.uses }
+--        CFarmingSystem.instance:sendCommand(self.character, 'water', args)
+--
+--        --Hack: use the water, too hard to get the server to update the client's inventory
+--        local plant = CFarmingSystem.instance:getLuaObjectOnSquare(self.sq)
+--        local waterLvl = plant.waterLvl
+--        for i=1,self.uses do
+--            if(waterLvl < 100) then
+--                if self.item:getUsedDelta() > 0 then
+--                    self.item:Use()
+--                end
+--                waterLvl = waterLvl + 5
+--                if(waterLvl > 100) then
+--                    waterLvl = 100
+--                end
+--            end
+--        end
+--
+--        local leftUses = math.floor(self.item:getUsedDelta()/self.item:getUseDelta())
+--        self.item:setUsedDelta(leftUses * self.item:getUseDelta())
+--    end
+--
+--    -- needed to remove from queue / start next.
+--    ISBaseTimedAction.perform(self)
+--end
+--
+--local function seedingAt(x, y, z, __self)
+--    local _self = __self
+--    if _self.sound and _self.sound ~= 0 then
+--        _self.character:getEmitter():stopOrTriggerSound(_self.sound)
+--    end
+--
+--    for i=1, _self.nbOfSeed do
+--        local seed = _self.seeds[i];
+--        _self.character:Say("Seed:"..seed)
+--        _self.character:getInventory():Remove(seed);
+--    end
+--
+--    if _self.plant:getSquare() then
+--        local args = { x = x , y = y, z = z,
+--                       typeOfSeed = _self.typeOfSeed,
+--                       uses = _self.uses }
+--        CFarmingSystem.instance:sendCommand(_self.character, 'seed', args)
+--        CFarmingSystem.instance:sendCommand(_self.character, 'water', args)
+--        --wateringAt(x, y, z, _self)
+--    end
+--end
+---- El Vero Seeding Technique
+--function ISSeedAction:perform()
+--    if holdGuidebook(self.character) and knowRecipe(self.character) then
+--        local plant = self.plant:getSquare()
+--        local x,y,z = plant:getX(), plant:getY(), plant:getZ();
+--        self.character:Say("El Vero Seeding 術~!")
+--        --[S] [S] [S]
+--        --[] [] []
+--        --[] [] []
+--        seedingAt(x-1, y-1, z, self)
+--        wateringAt(x-1, y-1, z, self)
+--        seedingAt(x, y-1, z, self)
+--        wateringAt(x, y-1, z, self)
+--        seedingAt(x+1, y-1, z, self)
+--        wateringAt(x+1, y-1, z, self)
+--        --[] [] []
+--        --[S] [S] [S]
+--        --[] [] []
+--        seedingAt(x-1, y, z, self)
+--        seedingAt(x, y, z, self)
+--        seedingAt(x+1, y, z, self)
+--        --[] [] []
+--        --[] [] []
+--        --[S] [S] [S]
+--        seedingAt(x-1, y+1, z, self)
+--        seedingAt(x, y+1, z, self)
+--        seedingAt(x+1, y+1, z, self)
+--    else
+--        -- Vanilla
+--        if self.sound and self.sound ~= 0 then
+--            self.character:getEmitter():stopOrTriggerSound(self.sound)
+--        end
+--
+--        for i=1, self.nbOfSeed do
+--            local seed = self.seeds[i];
+--            self.character:getInventory():Remove(seed);
+--        end
+--
+--        local sq = self.plant:getSquare()
+--        local args = { x = sq:getX(), y = sq:getY(), z = sq:getZ(), typeOfSeed = self.typeOfSeed }
+--        CFarmingSystem.instance:sendCommand(self.character, 'seed', args)
+--
+--        -- needed to remove from queue / start next.
+--        ISBaseTimedAction.perform(self);
+--    end
+--end
+--
+----
+----function ISFertilizeAction:perform()
+----    if not self.item:getContainer() then
+----        return
+----    end
+----
+----    self.item:getContainer():setDrawDirty(true);
+----    self.item:setJobDelta(0.0);
+----
+----    local sq = self.plant:getSquare()
+----    local args1 = { x = sq:getX()-1, y = sq:getY()-1, z = sq:getZ() }
+----    local args2 = { x = sq:getX(), y = sq:getY()-1, z = sq:getZ() }
+----    local args3 = { x = sq:getX()+1, y = sq:getY()-1, z = sq:getZ() }
+----
+----    local args4 = { x = sq:getX()-1, y = sq:getY(), z = sq:getZ() }
+----    local args5 = { x = sq:getX(), y = sq:getY(), z = sq:getZ() }
+----    local args6 = { x = sq:getX()+1, y = sq:getY(), z = sq:getZ() }
+----
+----    local args7 = { x = sq:getX()-1, y = sq:getY()+1, z = sq:getZ() }
+----    local args8 = { x = sq:getX(), y = sq:getY()+1, z = sq:getZ() }
+----    local args9 = { x = sq:getX()+1, y = sq:getY()+1, z = sq:getZ() }
+----    fertilizePlant(self.plant, self.character, args1)
+----    fertilizePlant(self.plant, self.character, args2)
+----    fertilizePlant(self.plant, self.character, args3)
+----    fertilizePlant(self.plant, self.character, args4)
+----    fertilizePlant(self.plant, self.character, args5)
+----    fertilizePlant(self.plant, self.character, args6)
+----    fertilizePlant(self.plant, self.character, args7)
+----    fertilizePlant(self.plant, self.character, args8)
+----    fertilizePlant(self.plant, self.character, args9)
+----    -- MP shouldn't do this directly
+----    self.item:Use()
+----    self.character:getInventory():Remove("FertilizerEmpty")
+----
+----    -- needed to remove from queue / start next.
+----    ISBaseTimedAction.perform(self);
+----end

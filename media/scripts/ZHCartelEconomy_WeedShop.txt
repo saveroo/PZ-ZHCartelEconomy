@@ -1,0 +1,270 @@
+module ZHCartel
+{
+  imports
+  {
+    Base,
+    ZHTieredVehicle,
+    Greenfire
+  }
+
+  /**********************************************************************/
+  /***************************Stoner Section************************************/
+  /**********************************************************************/
+
+    recipe [Order] 50x Rolling Paper for 3 Gold Bar
+  {
+     GoldBar=3,
+     keep ZH_Cartel_Legal_Card,
+     keep ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:RollingPapers=50,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }s
+
+  recipe [LV] Bong for 30 Gold Scrap
+  {
+     GoldScraps=30,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Bong,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  recipe [LV] Smoking Pipe 30 Silver Scrap
+  {
+     SilverScraps=30,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:SmokingPipe,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  recipe [LV] 50x Rolling Paper for 3 Gold Bar
+  {
+     GoldBar=3,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:RollingPapers=50,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+    recipe [WP] 10x Rolling Paper for 1 Gold Bar
+  {
+     GoldBar=1,
+     keep ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:RollingPapers=10,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  recipe [WP] Bong for 2 Gold Bar + 25 Gold Scrap
+  {
+     GoldBar=2,
+     GoldScraps=25,
+     keep ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Bong,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  recipe [WP] Smoking Pipe for 1 Silver Bar + 25 Silver Scrap
+  {
+     SilverBar=2,
+     SilverScraps=25,
+     keep ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:SmokingPipe,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+    recipe [RS] 2x Rolling Paper for 2 Gold Bar
+  {
+     GoldBar=2,
+     keep ZH_Cartel_RS_Card/ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:RollingPapers=2,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  recipe [RS] Smoking Pipe for 5 Silver Bar
+  {
+     SilverBar=5,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:SmokingPipe,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+   recipe [RS] Weed Grinder for 10 Gold Bar
+  {
+     GoldBar=10,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:GFGrinder,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  recipe [RS] Bong for 5 Gold Bar
+  {
+     GoldBar=5,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Bong,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  recipe [LV] Arabian Gold Bong for 5 Gold Bar
+  {
+     GoldBar=5,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:WeedBong_arabiangold,
+     Time:10.0,
+     Category:[ZH] Weed Shop,
+  }
+
+  /**********************************************************************/
+  /***************************Farming Tools************************************/
+  /**********************************************************************/
+
+  recipe 2x Size Watering Can for 50 Pearls
+    {
+       Pearls=50,
+       farming.WateredCan=4,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_WateredCan_2x,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [RS] 2x Size Watering Can for 30 Pearls
+    {
+       Pearls=30,
+       farming.WateredCan=2,
+       keep ZH_Cartel_RS_Card/ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_WateredCan_2x,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [WP] 4x Size Watering Can for 40 Pearls
+    {
+       Pearls=40,
+       ZHFarming.ZHFarming_WateredCan_2x=2,
+       keep ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_WateredCan_4x,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [LV] 8x Size Watering Can for 50 Pearls
+    {
+       Pearls=50,
+       ZHFarming.ZHFarming_WateredCan_4x=2,
+       keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_WateredCan_8x,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [KNOX] 16x Size Watering Can for 60 Pearls
+    {
+       Pearls=60,
+       ZHFarming.ZHFarming_WateredCan_8x=2,
+       keep ZH_Cartel_Knox_Card,
+       keep ZH_Cartel_Legal_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_WateredCan_16x,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [KNOX] 20x Size Watering Can for 70 Pearls
+    {
+       Pearls=70,
+       ZHFarming.ZHFarming_WateredCan_4x=1,
+       ZHFarming.ZHFarming_WateredCan_8x=2,
+       keep ZH_Cartel_Knox_Card,
+       keep ZH_Cartel_Legal_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_WateredCan_16x,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe Buy El Vero Farming Mag for 400 Pearls
+    {
+       Pearls=400,
+       Greenfire.KgCannabis=1,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_AdvancedFarmingMag1,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [RS] Buy El Vero Farming Mag for 350 Pearls
+    {
+       Pearls=350,
+       Greenfire.KgCannabis=1,
+       keep ZH_Cartel_RS_Card/ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_AdvancedFarmingMag1,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [WP] Buy El Vero Farming Mag for 300 Pearls
+    {
+       Pearls=300,
+       Greenfire.KgCannabis=1,
+       keep ZH_Cartel_WP_Card/ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_AdvancedFarmingMag1,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+
+    recipe [LV] Buy El Vero Farming Mag for 250 Pearls
+    {
+       Pearls=250,
+       Greenfire.KgCannabis=1,
+       keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+       keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+       Result:ZHFarming.ZHFarming_AdvancedFarmingMag1,
+       Time:10.0,
+       Category:[ZH] Weed Shop,
+    }
+}
