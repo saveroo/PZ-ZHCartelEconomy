@@ -22,7 +22,6 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
         local times = ZombRand(2,3);
         for i=1, times do
             local item1 = InventoryItemFactory.CreateItem("Greenfire.FreshCannabisFanLeaf");
-            char:Say("fan leaf")
             if(item1) then
                 commandWrap(item1);
                 char:getInventory():AddItem(item1);
@@ -31,35 +30,69 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
         times = ZombRand(3,5);
         for i=1, times do
             local item2 = InventoryItemFactory.CreateItem("Greenfire.FreshCannabisSugarLeaf");
-            char:Say("sugar leaf")
             if(item2) then
                 commandWrap(item2);
                 char:getInventory():AddItem(item2);
             end
         end
         if result and (ItemTimeTrackerMod[result:getType()] ~= nil) then
-            commandWrap(result)
+            -- Replace Legacy code
+            if result and result:hasModData() and ItemTimeTrackerMod[result:getType()] ~= nil and result:getModData()['StartYear'] then
+                result:getModData().StartYear = nil;
+                result:getModData().StartMonth = nil;
+                result:getModData().StartDay = nil;
+                result:getModData().StartHour = nil;
+            end
+
+            result:getModData().Life = ItemTimeTrackerMod[result:getType()]["Life"];
+            result:getModData().TurnInto = ItemTimeTrackerMod[result:getType()]["TurnInto"];
+
+            -- Patch Savero
+            result:getModData().StartTime = getGameTime():getWorldAgeHours();
+            result:getModData().DryTime = getGameTime():getWorldAgeHours() + ItemTimeTrackerMod[result:getType()]["Life"];
+            result:getModData().Remaining = result:getModData().DryTime - getGameTime():getWorldAgeHours();
+            if result:getModData().ShouldDry == nil then
+                if(result:getModData().DryTime - getGameTime():getWorldAgeHours() <= 0) then
+                    result:getModData().ShouldDry = true;
+                else
+                    result:getModData().ShouldDry = false;
+                end
+            end
             for i=0, (items:size()-1) do
                 local item = items:get(i);
+
                 -- Initialize modData for untrimmed required, before being trimmed.
                 if item:getType() == "FreshUnCanna" then
                     if item:getModData().StartTime == nil then
-                        commandWrap(item)
+                        items:get(i):getModData().Life = ItemTimeTrackerMod[items:get(i):getType()]["Life"];
+                        items:get(i):getModData().TurnInto = ItemTimeTrackerMod[items:get(i):getType()]["TurnInto"];
+
+                        -- Patch Savero
+                        items:get(i):getModData().StartTime = getGameTime():getWorldAgeHours();
+                        items:get(i):getModData().DryTime = getGameTime():getWorldAgeHours() + ItemTimeTrackerMod[items:get(i):getType()]["Life"];
+                        items:get(i):getModData().Remaining = items:get(i):getModData().DryTime - getGameTime():getWorldAgeHours();
+                        if item:getModData().ShouldDry == nil then
+                            if(item:getModData().DryTime - getGameTime():getWorldAgeHours() <= 0) then
+                                item:getModData().ShouldDry = true;
+                            else
+                                item:getModData().ShouldDry = false;
+                            end
+                        end
                     end
                 end
 
                 -- For trimmed item
                 -- TODO: Should calculate based on Trimmed Cannabis time
                 if item:getType() == "FreshUnCanna" then
-                    --if result:getModData().Life > (items:get(i):getModData().Life - items:get(i):getModData().Remaining) then
-                    --    result:getModData().Life = items:get(i):getModData().Life;
-                    --
-                    --    --	Patch Savero
-                    --    result:getModData().StartTime = items:get(i):getModData().StartTime;
-                    --    result:getModData().DryTime = items:get(i):getModData().DryTime;
-                    --    result:getModData().Remaining = items:get(i):getModData().Remaining;
-                    --    result:getModData().ShouldDry = items:get(i):getModData().ShouldDry;
-                    --end
+                    if result:getModData().Life > (items:get(i):getModData().Life - items:get(i):getModData().Remaining) then
+                        result:getModData().Life = items:get(i):getModData().Life;
+
+                        --	Patch Savero
+                        result:getModData().StartTime = items:get(i):getModData().StartTime;
+                        result:getModData().DryTime = items:get(i):getModData().DryTime;
+                        result:getModData().Remaining = items:get(i):getModData().Remaining;
+                        result:getModData().ShouldDry = items:get(i):getModData().ShouldDry;
+                    end
                 end
             end
         end

@@ -48,7 +48,7 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
             -- check if should dry
             if checkModData(item, 'DryTime') then
                 local remaining = item:getModData().DryTime - getGameTime():getWorldAgeHours();
-                getPlayer():Say("Remaining: " .. remaining)
+                --getPlayer():Say("Remaining: " .. remaining)
 
                 if remaining <= 0 then
                     item:getModData().Remaining = remaining;
@@ -211,7 +211,6 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
     GFWorldItemHandle = PATCH_GFWorldItemHandle
 
     function PATCH_GFItemCheck()
-        getPlayer():Say("PATCH_GFItemChec22k");
         if getPlayer() ~= nil then
             PATCH_GFContainerHandle(getPlayer():getInventory());
         end
@@ -319,13 +318,12 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
     end
 
     function PATCH_Greenfire_apply()
-        getPlayer():Say("Patch Apply");
         PATCH_GFItemCheck()
     end
 
     local PATCH_Greenfire_every5hour = 0
     function PATCH_Greenfire_watcher()
-        if PATCH_Greenfire_every5hour <= 2 then
+        if PATCH_Greenfire_every5hour < 2 then
             PATCH_Greenfire_every5hour = PATCH_Greenfire_every5hour + 1
             return;
         end
@@ -339,6 +337,7 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
     --- @param item InventoryItem
     function PATCH_Greenfire_clientModule.ItemCheck(item)
         if item ~= nil then
+            PATCH_migrateModData(item);
             return PATCH_GFloadItem(item)
         end
         return false;
@@ -347,10 +346,10 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
     function PATCH_Greenfire_clientModule.onServerCommand(module, command, args)
         if module ~= "PATCH_Greenfire_clientModule" then return; end
         if(command == "ItemCheck") then
-            getPlayer():Say("ItemCheck")
+            --getPlayer():Say("ItemCheck")
             if args and args.item ~= nil then
                 if PATCH_Greenfire_clientModule.ItemCheck(args.item) then
-                    getPlayer():Say("ItemCheck: " .. args.item:getType() .. " - " .. args.item:getModData().Life)
+                    --getPlayer():Say("ItemCheck: " .. args.item:getType() .. " - " .. args.item:getModData().Life)
                     sendServerCommand("PATCH_Greenfire_serverModule", "AddItem", {
                         player = args.player or getPlayer(),
                         item = args.item
@@ -361,5 +360,33 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
     end
     Events.OnServerCommand.Add(PATCH_Greenfire_clientModule.onServerCommand)
     Events.OnGameStart.Add(PATCH_Greenfire_apply);
-    Events.EveryHours.Add(PATCH_Greenfire_watcher)
+    Events.EveryHours.Add(PATCH_Greenfire_watcher);
+
+    -- Add context option
+    local function PATCH_Greenfire_checkSelected(item, itemType, player)
+        --local items = getPlayerInventory(0):getItemsFromType(itemType)
+        --for k,v in pairs(items) do
+        --    if v:getModData()['Remaining'] then
+        --        if v:getModData()['Remaining'] <= 0 then
+        --            return true
+        --        end
+        --    end
+        --end
+        --return false
+    end
+
+    local function PATCH_Greenfire_context(player, context, items)
+        for _, v in ipairs(items) do
+            local item = v;
+            if not instanceof(v, "InventoryItem") then
+                item = v.items[1];
+            end
+
+            if item and ItemTimeTrackerMod[item:getType()] then
+                context:addOption("Check Dry Level", player, PATCH_GFItemCheck, item)
+            end
+        end
+    end
+    Events.OnPreFillInventoryObjectContextMenu.Add(PATCH_Greenfire_context)
+
 end

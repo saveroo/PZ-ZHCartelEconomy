@@ -2,7 +2,6 @@ if getActivatedMods():contains("jiggasGreenfireMod") then
     ItemTimeTrackerMod = ItemTimeTrackerMod or require('Timed/GFtimetracker_definitions') or {}
 
     function GFloadItem(item)
-        getPlayer():Say("P")
         -- Remove Legacy
         if item and item:hasModData() and ItemTimeTrackerMod[item:getType()] ~= nil and item:getModData()['StartYear'] then
             item:getModData().StartYear = nil;
