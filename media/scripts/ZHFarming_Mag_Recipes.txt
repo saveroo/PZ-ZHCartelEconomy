@@ -1,0 +1,254 @@
+module ZHFarming {
+    imports {
+     Base,
+     Greenfire
+    }
+
+    /**********************************************************************/
+    /***************************Fertilizer Recipes**************************/
+    /**********************************************************************/
+
+    recipe Make El Vero Corpse Fertilizer
+    {
+        keep Base.MortarPestle,
+        CannabisSeed=10,
+        keep Base.HuntingKnife/Base.KitchenKnife/Base.Saw/Base.Axe/Base.HandAxe/Base.AxeStone/Base.WoodAxe/Base.MeatCleaver/Base.FlintKnife/Base.Machete,
+        keep ZHFarming_AdvancedFarmingMag1,
+        Base.CorpseMale/Base.CorpseFemale,
+        Base.EmptySandbag/Base.FertilizerEmpty,
+
+        Result: Base.CompostBag,
+        OnCreate: ZHFarming_OnCreate_CompostBag,
+        Sound: MaleZombieEating,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 250.0,
+    }
+
+    /**********************************************************************/
+    /***************************Shovel Recipes**************************/
+    /**********************************************************************/
+
+
+    /**********************************************************************/
+    /***************************Can Recipes**************************/
+    /**********************************************************************/
+    recipe Make Fertilized Watering Can 16x
+    {
+        keep Base.MortarPestle,
+        Base.CompostBag,
+        destroy ZHFarming_WateredCanFull_16x=640,
+        keep ZHFarming_AdvancedFarmingMag1,
+
+        Result: ZHFarming_FertilizedCanFull_16x,
+        OnCreate: ZHFarming_OnCreate_FertilizerCan,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 250.0,
+    }
+
+    recipe Make Fertilized Watering Can 20x
+    {
+        keep Base.MortarPestle,
+        Base.CompostBag,
+        destroy ZHFarming_WateredCanFull_20x=800,
+        keep ZHFarming_AdvancedFarmingMag1,
+
+        Result: ZHFarming_FertilizedCanFull_20x,
+        OnCreate: ZHFarming_OnCreate_FertilizerCan,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 250.0,
+    }
+    /**********************************************************************/
+    /***************************Guidebook Recipes**************************/
+    /**********************************************************************/
+    recipe Compile into Farming plan book
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=50,
+        Paperclip=100,
+        Eraser=10,
+        ZHFarming_module_plotting=1,
+        ZHFarming_module_removing=1,
+        ZHFarming_module_plowing=1,
+        ZHFarming_module_harvesting=1,
+        ZHFarming_module_fertilizing=1,
+        ZHFarming_module_watering=1,
+        ZHFarming_module_seeding=1,
+        ZHFarming_module_continuation=1,
+
+        Result: ZHFarming_farming_plan,
+        CanBeDoneFromFloor: true,
+        OnCreate: ZHFarming_OnCreate_FarmingPlan,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Plotting schema
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_plotting,
+        OnCreate: ZHFarming_OnCreate_PlotModule3x3,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down 3x3 plot steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_plot_3x3,
+        OnCreate: ZHFarming_OnCreate_PlotModule3x3,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Seeding steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_seeding,
+        OnCreate: ZHFarming_OnCreate_SeedingModule,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Watering steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_watering,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Fertilizing steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_fertilizing,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Harvesting steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_harvesting,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Plowing steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_plowing,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Removing steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_removing,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Write down Continuation steps
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper2=30,
+        Paperclip=3,
+        Eraser=3,
+
+        Result: ZHFarming_module_continuation,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+
+    recipe Compile 3x3 module into a book
+    {
+        keep ZHFarming_AdvancedFarmingMag1,
+        keep Base.Pen/Base.Pencil/Base.BluePen/Base.RedPen,
+        SheetPaper=50,
+        Paperclip=100,
+        LeatherStrips=10,
+        Eraser=10,
+        ZHFarming_module_removing=1,
+        ZHFarming_module_plowing=1,
+        ZHFarming_module_harvesting=1,
+        ZHFarming_module_fertilizing=1,
+        ZHFarming_module_watering=1,
+        ZHFarming_module_seeding=1,
+        ZHFarming_module_continuation=1,
+        ZHFarming_module_plot_3x3=1,
+
+        Result: ZHFarming_module_book_3x3,
+        CanBeDoneFromFloor: true,
+        Category: [ZH] Farming,
+        NeedToBeLearn: true,
+        Time: 1000.0,
+    }
+}

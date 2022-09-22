@@ -1,0 +1,146 @@
+module ZHCartel
+{
+  imports
+  {
+    Base,
+    PinkSlip
+  }
+
+  /**
+   Buying
+   **/
+
+  recipe [Buy] T2 APC for (410 P)
+  {
+     Pearls=410,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:PinkSlip.M113X_APCWAR,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+  recipe [Buy] T2 APC for (520 P) +Insurance
+  {
+     Pearls=520,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:M113X_APCWAR,
+     OnCreate:ZHCartel_BlackMarket_OnCreate,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+  recipe [Buy] T2 APC for (300 P) +Insurance
+  {
+     Pearls=300,
+     ZH_Cartel_Legal_Card=5,
+     keep ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:M113X_APCWAR,
+     OnCreate:ZHCartel_BlackMarket_OnCreate,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+  /**
+   Buying, from LV Dealer
+   **/
+
+  recipe [Buy] T3 Rhino for (666 P)
+  {
+     Pearls=666,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Rhino,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+  recipe [Buy] T3 Rhino for (777 P) +Insurance
+  {
+     Pearls=777,
+     keep ZH_Cartel_LV_Card/ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Rhino,
+     OnCreate:ZHCartel_BlackMarket_OnCreate,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+
+   /**
+   Buying, from Knox Dealer
+   **/
+  recipe [Buy] T3 Rhino for (544 P) +Insurance
+  {
+     Pearls=544,
+     ZH_Cartel_Legal_Card=5,
+     keep ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Rhino,
+     OnCreate:ZHCartel_BlackMarket_OnCreate,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+   /**
+   Selling
+   **/
+
+   recipe [Sell] T3 Rhino for (400 P)
+  {
+     Rhino,
+     ZH_Cartel_Legal_Card=5,
+     keep ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Pearls=400,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+  recipe [Sell] Insured T3 Rhino for (460 P)
+  {
+     Rhino,
+     ZH_Cartel_Blackmarket_Rhino_Ownership,
+     ZH_Cartel_Legal_Card=5,
+     keep ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Pearls=450,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+  recipe [Sell] T2 APC for (200 P)
+  {
+     M113X_APCWAR,
+     ZH_Cartel_Legal_Card=5,
+     keep ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Pearls=200,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+
+  recipe [Sell] Insured T2 APC for (260 P)
+  {
+     M113X_APCWAR,
+     ZH_Cartel_Blackmarket_M113X_APCWAR_Ownership,
+     ZH_Cartel_Legal_Card=5,
+     keep ZH_Cartel_Knox_Card,
+     keep WalkieTalkie4/WalkieTalkie5/HamRadio1/HamRadio2/HamRadioMakeShift,
+
+     Result:Pearls=260,
+     Time:10.0,
+     Category:[ZH] Blackmarket,
+  }
+}

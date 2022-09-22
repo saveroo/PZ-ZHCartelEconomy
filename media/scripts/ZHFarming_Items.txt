@@ -1,0 +1,449 @@
+module ZHFarming
+{
+    imports {
+        Base,
+        farming
+    }
+
+/**********************************************************************/
+/***************************2x Size************************************/
+/**********************************************************************/
+    item ZHFarming_WateredCanFull_2x
+	{
+	    DisplayCategory = Water,
+		Type				=		Drainable,
+		DisplayName			=		Watering Can 2x (Filled),
+		Icon				=		WateringCan,
+		Weight				=		4.0,
+    	UseDelta			=		0.0125,
+	    UseWhileEquipped	=	    false,
+    	ReplaceOnUseOn 		= 		WaterSource-ZHFarming_WateredCanFull_2x,
+    	ReplaceOnDeplete 	= 		ZHFarming_WateredCan_2x,
+    	IsWaterSource		=		true,
+		CanStoreWater		=		true,
+		FillFromDispenserSound = GetWaterFromDispenserPlasticBig,
+		FillFromTapSound = GetWaterFromTapPlasticBig,
+		IsCookable	=	TRUE,
+        RainFactor = 0.4,
+        Tooltip = Tooltip_item_RainFromGround,
+        StaticModel = WateringCan,
+        WorldStaticModel = WateringCanGround,
+        EatType = WateringCan,
+	}
+
+    item ZHFarming_WateredCan_2x
+	{
+	    DisplayCategory = Gardening,
+		Type				=		Normal,
+		DisplayName			=		Empty Watering Can 2x,
+		Icon				=		TZ_WateringCan,
+		Weight				=		2.0,
+    	ReplaceOnUseOn  	=		WaterSource-ZHFarming_WateredCanFull_2x,
+		CanStoreWater		=		true,
+        RainFactor          = 0.4,
+        Tooltip             = Tooltip_item_RainFromGround,
+        StaticModel         = WateringCan,
+        WorldStaticModel    = WateringCanGround,
+        SurvivalGear        = TRUE,
+	}
+
+	/**********************************************************************/
+    /***************************4x Size************************************/
+    /**********************************************************************/
+
+	item ZHFarming_WateredCanFull_4x
+    {
+        DisplayCategory = Water,
+        Type				=		Drainable,
+        DisplayName			=		Watering Can 4x (Filled),
+        Icon				=		WateringCan,
+        Weight				=		4.0,
+        UseDelta			=		0.00625,
+        UseWhileEquipped	=	    false,
+        ReplaceOnUseOn 		= 		WaterSource-ZHFarming_WateredCanFull_4x,
+        ReplaceOnDeplete 	= 		ZHFarming_WateredCan_4x,
+        IsWaterSource		=		true,
+        CanStoreWater		=		true,
+        FillFromDispenserSound = GetWaterFromDispenserPlasticBig,
+        FillFromTapSound = GetWaterFromTapPlasticBig,
+        IsCookable	=	TRUE,
+        RainFactor = 0.5,
+        Tooltip = Tooltip_item_RainFromGround,
+        StaticModel = WateringCan,
+        WorldStaticModel = WateringCanGround,
+        EatType = WateringCan,
+    }
+    item ZHFarming_WateredCan_4x
+    {
+        DisplayCategory = Gardening,
+        Type				=		Normal,
+        DisplayName			=		Empty Watering Can 4x,
+        Icon				=		TZ_WateringCan,
+        Weight				=		2.0,
+        ReplaceOnUseOn  	=		WaterSource-ZHFarming_WateredCanFull_4x,
+        CanStoreWater		=		true,
+        RainFactor          = 0.5,
+        Tooltip             = Tooltip_item_RainFromGround,
+        StaticModel         = WateringCan,
+        WorldStaticModel    = WateringCanGround,
+        SurvivalGear        = TRUE,
+    }
+
+    /**********************************************************************/
+    /***************************8x Size************************************/
+    /**********************************************************************/
+
+    item ZHFarming_WateredCanFull_8x
+    {
+        DisplayCategory = Water,
+        Type				=		Drainable,
+        DisplayName			=		Watering Can 8x (Filled),
+        Icon				=		WateringCan,
+        Weight				=		5.0,
+        UseDelta			=		0.003125,
+        UseWhileEquipped	=	    false,
+        ReplaceOnUseOn 		= 		WaterSource-ZHFarming_WateredCanFull_8x,
+        ReplaceOnDeplete 	= 		ZHFarming_WateredCan_8x,
+        IsWaterSource		=		true,
+        CanStoreWater		=		true,
+        FillFromDispenserSound = GetWaterFromDispenserPlasticBig,
+        FillFromTapSound = GetWaterFromTapPlasticBig,
+        IsCookable	=	TRUE,
+        RainFactor = 0.8,
+        Tooltip = Tooltip_item_RainFromGround,
+        StaticModel = WateringCan,
+        WorldStaticModel = WateringCanGround,
+        EatType = WateringCan,
+    }
+    item ZHFarming_WateredCan_8x
+    {
+        DisplayCategory = Gardening,
+        Type				=		Normal,
+        DisplayName			=		Empty Watering Can 8x,
+        Icon				=		TZ_WateringCan,
+        Weight				=		3.0,
+        ReplaceOnUseOn  	=		WaterSource-ZHFarming_WateredCanFull_8x,
+        CanStoreWater		=		true,
+        RainFactor          = 0.8,
+        Tooltip             = Tooltip_item_RainFromGround,
+        StaticModel         = WateringCan,
+        WorldStaticModel    = WateringCanGround,
+        SurvivalGear        = TRUE,
+    }
+
+    /**********************************************************************/
+    /***************************16x Size************************************/
+    /**********************************************************************/
+
+    item ZHFarming_WateredCanFull_16x
+        {
+            DisplayCategory = Water,
+            Type				=		Drainable,
+            DisplayName			=		Watering Can 16x (Filled),
+            Icon				=		WateringCan,
+            Weight				=		5.0,
+            UseDelta			=		0.0015625,
+            UseWhileEquipped	=	    false,
+            ReplaceOnUseOn 		= 		WaterSource-ZHFarming_WateredCanFull_16x,
+            ReplaceOnDeplete 	= 		ZHFarming_WateredCan_16x,
+            IsWaterSource		=		true,
+            CanStoreWater		=		true,
+            FillFromDispenserSound = GetWaterFromDispenserPlasticBig,
+            FillFromTapSound = GetWaterFromTapPlasticBig,
+            IsCookable	=	TRUE,
+            RainFactor = 1.6,
+            Tooltip = Tooltip_item_RainFromGround,
+            StaticModel = WateringCan,
+            WorldStaticModel = WateringCanGround,
+            EatType = WateringCan,
+        }
+        item ZHFarming_WateredCan_16x
+        {
+            DisplayCategory = Gardening,
+            Type				=		Normal,
+            DisplayName			=		Empty Watering Can 16x,
+            Icon				=		TZ_WateringCan,
+            Weight				=		3.0,
+            ReplaceOnUseOn  	=		WaterSource-ZHFarming_WateredCanFull_16x,
+            CanStoreWater		=		true,
+            RainFactor          = 1.6,
+            Tooltip             = Tooltip_item_RainFromGround,
+            StaticModel         = WateringCan,
+            WorldStaticModel    = WateringCanGround,
+            SurvivalGear        = TRUE,
+        }
+
+    /**********************************************************************/
+    /***************************20x Size************************************/
+    /**********************************************************************/
+    item ZHFarming_WateredCanFull_20x
+    {
+        DisplayCategory = Water,
+        Type				=		Drainable,
+        DisplayName			=		Watering Can 20x (Filled),
+        Icon				=		WateringCan,
+        Weight				=		5.0,
+        UseDelta			=		0.00125,
+        UseWhileEquipped	=	    false,
+        ReplaceOnUseOn 		= 		WaterSource-ZHFarming_WateredCanFull_20x,
+        ReplaceOnDeplete 	= 		ZHFarming_WateredCan_20x,
+        IsWaterSource		=		true,
+        CanStoreWater		=		true,
+        FillFromDispenserSound = GetWaterFromDispenserPlasticBig,
+        FillFromTapSound = GetWaterFromTapPlasticBig,
+        IsCookable	=	TRUE,
+        RainFactor = 4.0,
+        Tooltip = Tooltip_item_RainFromGround,
+        StaticModel = WateringCan,
+        WorldStaticModel = WateringCanGround,
+        EatType = WateringCan,
+    }
+    item ZHFarming_WateredCan_20x
+    {
+        DisplayCategory = Gardening,
+        Type				=		Normal,
+        DisplayName			=		Empty Watering Can 20x,
+        Icon				=		TZ_WateringCan,
+        Weight				=		3.0,
+        ReplaceOnUseOn  	=		WaterSource-ZHFarming_WateredCanFull_20x,
+        CanStoreWater		=		true,
+        RainFactor          = 4.0,
+        Tooltip             = Tooltip_item_RainFromGround,
+        StaticModel         = WateringCan,
+        WorldStaticModel    = WateringCanGround,
+        SurvivalGear        = TRUE,
+    }
+
+    /**********************************************************************/
+    /***************************Fertilizer*********************************/
+    /**********************************************************************/
+
+    item ZHFarming_AdvancedFarmingMag1
+    {
+        Weight	=	0.1,
+        Type	=	Literature,
+        DisplayName	=	El Vero Farming Magazine,
+        Icon	=	MagazineBlacksmith1,
+        TeachedRecipes  =
+            Make El Vero Corpse Fertilizer
+            ;Make Fertilized Watering Can 20x
+            ;Make Fertilized Watering Can 16x
+            ;El Vero Watering Technique
+            ;El Vero Fertilize Technique
+            ;El Vero Seeding Technique
+            ;Write down 3x3 plot steps
+            ;Write down Seeding steps
+            ;Write down Watering steps
+            ;Write down Fertilizing steps
+            ;Write down Harvesting steps
+            ;Write down Plowing steps
+            ;Write down Removing steps
+            ;Write down Continuation steps
+            ;Write down Plotting schema
+            ;Compile into Farming plan book
+            ;Compile 3x3 module into a book,
+        Tooltip = Tooltip_ZHFarming_AdvancedFarmingMag1,
+        ReplaceOnUse    =   ZHFarming.ZHFarming_AdvancedFarmingMag1,
+        StaticModel = Magazine,
+    }
+
+    /**********************************************************************/
+    /***************************Fertilizer Can*****************************/
+    /**********************************************************************/
+
+    item ZHFarming_FertilizedCanFull_16x
+    {
+        DisplayCategory     =       Water,
+        Type				=		Drainable,
+        DisplayName			=		Fertilized Can 20x (Filled),
+        Icon				=		WateringCan,
+        Weight				=		5.0,
+        UseDelta			=		0.00125,
+        UseWhileEquipped	=	    false,
+        ReplaceOnDeplete 	= 		ZHFarming_WateredCan_20x,
+        IsWaterSource		=		true,
+        CanStoreWater		=		true,
+        FillFromDispenserSound = GetWaterFromDispenserPlasticBig,
+        FillFromTapSound = GetWaterFromTapPlasticBig,
+        IsCookable	=	TRUE,
+        RainFactor = 2.0,
+        Tooltip = Tooltip_item_RainFromGround,
+        StaticModel = WateringCan,
+        WorldStaticModel = WateringCanGround,
+        EatType = WateringCan,
+    }
+
+    item ZHFarming_FertilizedCanFull_20x
+    {
+        DisplayCategory     =       Water,
+        Type				=		Drainable,
+        DisplayName			=		Fertilized Can 20x (Filled),
+        Icon				=		WateringCan,
+        Weight				=		5.0,
+        UseDelta			=		0.00125,
+        UseWhileEquipped	=	    false,
+        ReplaceOnDeplete 	= 		ZHFarming_WateredCan_20x,
+        IsWaterSource		=		true,
+        CanStoreWater		=		true,
+        FillFromDispenserSound = GetWaterFromDispenserPlasticBig,
+        FillFromTapSound = GetWaterFromTapPlasticBig,
+        IsCookable	=	TRUE,
+        RainFactor = 4.0,
+        Tooltip = Tooltip_item_RainFromGround,
+        StaticModel = WateringCan,
+        WorldStaticModel = WateringCanGround,
+        EatType = WateringCan,
+    }
+
+    /**********************************************************************/
+    /***************************Guidebook Module***************************/
+    /**********************************************************************/
+
+    item ZHFarming_farming_plan
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Book] Farming Plan,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+
+    item ZHFarming_module_plotting
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Plotting Schema,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+
+    item ZHFarming_module_plot_3x3
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] 3x3 Plots,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_plot_3x9
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] 3x9 Plots,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_plot_1x1
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] 1x3 Plots,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_plot_1x3
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] 1x3 Plots,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_book_3x3
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Book] 3x3 Plot Guide,
+        Icon	= Notebook,
+        CanBeWrite = true,
+        PageToWrite = 2,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_seeding
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Seeding,
+        Icon	= Notebook,
+        CanBeWrite = true,
+        PageToWrite = 2,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_watering
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Watering,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_fertilizing
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Fertilizing,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_harvesting
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Harvesting,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_plowing
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Plowing,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_removing
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Removing,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    item ZHFarming_module_continuation
+    {
+        Weight	=	0.25,
+        Type	=	Normal,
+        DisplayCategory = Literature,
+        DisplayName	=	[Module] Continuation,
+        Icon	= Notebook,
+        StaticModel = Newspaper,
+        WorldStaticModel = EmptyNotebook,
+    }
+    /**********************************************************************/
+}

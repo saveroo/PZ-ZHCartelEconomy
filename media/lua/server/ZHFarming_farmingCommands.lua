@@ -1,0 +1,79 @@
+----***********************************************************
+----**                    THE INDIE STONE                    **
+----***********************************************************
+--
+--if isClient() then return end
+--
+--require "Farming/SFarmingSystem"
+--require "Farming/farmingCommands"
+--
+--local ZHFarmingCommands = Commands or {}
+--
+--local function noise(message) SFarmingSystem.instance:noise(message) end
+--local function getPlantAt(x, y, z)
+--    return SFarmingSystem.instance:getLuaObjectAt(x, y, z)
+--end
+--
+--function ZHFarmingCommands.fertilize(player, args)
+--    local plant = getPlantAt(args.x, args.y, args.z)
+--    if plant then
+--        plant:fertilize(nil)
+--    else
+--        noise('no plant found at '..args.x..','..args.y..','..args.z)
+--    end
+--end
+--
+--function ZHFarmingCommands.plow(player, args)
+--    local gridSquare = getCell():getGridSquare(args.x, args.y, args.z)
+--    if gridSquare then
+--        local plant = getPlantAt(args.x, args.y, args.z)
+--        if plant then
+--            SFarmingSystem.instance:removePlant(plant)
+--        end
+--        SFarmingSystem.instance:plow(gridSquare)
+--    else
+--        noise('no gridSquare at '..args.x..','..args.y..','..args.z)
+--    end
+--end
+--
+--function ZHFarmingCommands.seed(player, args)
+--    local plant = getPlantAt(args.x, args.y, args.z)
+--    if plant and plant.state == "plow" then
+--        plant:seed(args.typeOfSeed)
+--    elseif not plant then
+--        noise('no plant found at '..args.x..','..args.y..','..args.z)
+--    else
+--        noise('ignored, plant not plowed at '..args.x..','..args.y..','..args.z)
+--    end
+--end
+--
+--function ZHFarmingCommands.water(player, args)
+--    player:Say("Server Watering")
+--    if args.useSpecialCan then
+--        player:Say("Server Watering with Special Can")
+--        for i = 5, 0, -1 do
+--            local plantsLeft = getPlantAt(args.x-1, args.y-i, args.z)
+--            local plantsMiddle = getPlantAt(args.x, args.y-i, args.z)
+--            local plantsRight = getPlantAt(args.x+1, args.y-i, args.z)
+--            if plantsLeft then
+--                plantsLeft:water(nil, args.uses)
+--            end
+--            if plantsMiddle then
+--                plantsMiddle:water(nil, args.uses)
+--            end
+--            if plantsRight then
+--                plantsRight:water(nil, args.uses)
+--            end
+--        end
+--    else
+--        local plant = getPlantAt(args.x, args.y, args.z)
+--        if plant then
+--            plant:water(nil, args.uses)
+--        else
+--            noise('no plant found at '..args.x..','..args.y..','..args.z)
+--        end
+--    end
+--end
+--
+--SFarmingSystemCommands.ZHFarmingCommands = ZHFarmingCommands
+--

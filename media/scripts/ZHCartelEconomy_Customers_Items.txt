@@ -1,0 +1,37 @@
+module ZHCartel
+{
+    imports
+    {
+        Base
+    }
+
+	item ZH_Cartel_RSCustomer
+	{
+	    DisplayCategory = Junk,
+	    Weight	=	0.0001,
+	    Type	=	Normal,
+	    DisplayName	=	Customer Receipt (RS),
+	    Icon	=	Paper,
+	    WorldStaticModel = SheetOfPaper,
+	}
+
+		item ZH_Cartel_WPCustomer
+	{
+	    DisplayCategory = Junk,
+	    Weight	=	0.0001,
+	    Type	=	Normal,
+	    DisplayName	=	Customer Receipt (WP),
+	    Icon	=	Paper,
+	    WorldStaticModel = SheetOfPaper,
+	}
+
+		item ZH_Cartel_LVCustomer
+	{
+	    DisplayCategory = Junk,
+	    Weight	=	0.0001,
+	    Type	=	Normal,
+	    DisplayName	=	Customer Receipt (LV),
+	    Icon	=	Paper,
+	    WorldStaticModel = SheetOfPaper,
+	}
+}
